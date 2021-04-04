@@ -1,10 +1,15 @@
-#include <Arduino.h>
 #include "motors.h"
 
-#define MAX_PHASE 3
-#define MIN_PHASE 0
-
+// Which phase each motor is currently in
 int motor_phases[] = {0,0};
+
+// Assuming index 0 - 3 is motor 1, 4 - 7 is motor 2. This map represents
+// a particular motor-phase and corresponds it to a pin on the shift register.
+// By using this map lookup, we can change which phase maps to which pin through a
+// global definition instead of making assumptions.
+int phase_pin_map[] = { MOTOR_1_A, MOTOR_1_B, MOTOR_1_C, MOTOR_1_D, MOTOR_2_A, MOTOR_2_B, MOTOR_2_C, MOTOR_2_D };
+
+// This represents which shift register pins are currently HIGH.
 int shift_register_values[8] =  {0,0,0,0,0,0,0,0};
 
 /* 
@@ -34,11 +39,18 @@ int _computeOffset(motor_t motor) {
 void _setPhase(motor_t motor, int phase) {
   int offset = _computeOffset(motor);
   for (int phase_idx = 0; phase_idx < 4; phase_idx++) {
-    shift_register_values[offset + phase_idx] = 0;
+    // For a given index, lookup the pin mapping
+    int phase_pin = phase_pin_map[offset + phase_idx];
+    // Then we can zero out the particular pin in question
+    shift_register_values[phase_pin] = 0;
   }
-  shift_register_values[offset + phase] = 1;
-  // TOOD: apply to shift register
-  
+
+  // For the selected phase, lookup the pin mapping
+  int phase_pin = phase_pin_map[offset + phase];
+  shift_register_values[phase_pin] = 1;
+
+  // Use the shift.h function to apply values.
+  update_shift_registers(shift_register_values);  
 }
 
 /* 
@@ -74,7 +86,7 @@ void _step(motor_t motor, bool forward) {
  *  -----------------------------
  *  This method will move a particular motor forwards.
  */
-void stepForward(motor_t motor) {
+void step_forward(motor_t motor) {
   _step(motor, true);  
 }
 
@@ -83,6 +95,6 @@ void stepForward(motor_t motor) {
  *  -----------------------------
  *  This method will move a particular motor backwards.
  */
-void stepBackward(motor_t motor) {
+void step_backward(motor_t motor) {
   _step(motor, false);
 }
