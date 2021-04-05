@@ -9,6 +9,7 @@
 #define SHIFT_REG_CLCK  2
 #define SHIFT_REG_DATA  3
 #define SHIFT_REG_LATCH 4
+#define SHIFT_REG_CLEAR 5
 
 /* 
   MOTORS
@@ -16,13 +17,13 @@
   represents which pin index that particular phase (A-D) is
   configured against.
 */
-#define MOTOR_1_A  1
+#define MOTOR_1_A  0
 #define MOTOR_1_B  2
-#define MOTOR_1_C  3
-#define MOTOR_1_D  4
-#define MOTOR_2_A  5
+#define MOTOR_1_C  1
+#define MOTOR_1_D  3
+#define MOTOR_2_A  4
 #define MOTOR_2_B  6
-#define MOTOR_2_C  7
-#define MOTOR_2_D  8
+#define MOTOR_2_C  5
+#define MOTOR_2_D  7
 
 #endif

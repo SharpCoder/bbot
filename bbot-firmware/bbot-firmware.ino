@@ -16,14 +16,16 @@
 #include "shift.h"
 #include "motors.h"
 
-void setup() {
+void setup() {  
   pinMode(SHIFT_REG_CLCK, OUTPUT);
   pinMode(SHIFT_REG_DATA, OUTPUT);
   pinMode(SHIFT_REG_LATCH, OUTPUT);
+  pinMode(SHIFT_REG_CLEAR, OUTPUT);
 }
 
 void loop() {
   step_forward(MotorLeft);
   step_forward(MotorRight);
-  delay(2);
+  
+  delayMicroseconds(2000);
 }
