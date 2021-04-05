@@ -7,14 +7,14 @@ int motor_phases[] = {0,0};
 // a particular motor-phase and corresponds it to a pin on the shift register.
 // By using this map lookup, we can change which phase maps to which pin through a
 // global definition instead of making assumptions.
-int phase_pin_map[] = { MOTOR_1_A, MOTOR_1_B, MOTOR_1_C, MOTOR_1_D, MOTOR_2_A, MOTOR_2_B, MOTOR_2_C, MOTOR_2_D };
+int phase_pin_map[] = { MOTOR_1_A, MOTOR_1_C, MOTOR_1_B, MOTOR_1_D, MOTOR_2_A, MOTOR_2_C, MOTOR_2_B, MOTOR_2_D };
 
 // This represents which shift register pins are currently HIGH.
 int shift_register_values[8] =  {0,0,0,0,0,0,0,0};
 
 /* 
  *  Function: computeOffset
- *  -----------------------------
+ *  ---------------------------------------------------
  *  This method computes the offset of a particular
  *  motor. The first motor has no offset, the second
  *  motor has an offset of 4. This is because
@@ -31,7 +31,7 @@ int _computeOffset(motor_t motor) {
 
 /* 
  *  Function: setPhase
- *  -----------------------------
+ *  ---------------------------------------------------
  *  This method will take a motor and a phase
  *  and update the shift register data object
  *  while applying the result into the shift register.
@@ -55,7 +55,7 @@ void _setPhase(motor_t motor, int phase) {
 
 /* 
  *  Function: _step
- *  -----------------------------
+ *  ---------------------------------------------------
  *  This method will take a motor and a direction
  *  and update the stepper phase in order to achieve
  *  movement in the particular direction.
@@ -83,7 +83,7 @@ void _step(motor_t motor, bool forward) {
 
 /* 
  *  Function: stepForward
- *  -----------------------------
+ *  ---------------------------------------------------
  *  This method will move a particular motor forwards.
  */
 void step_forward(motor_t motor) {
@@ -92,7 +92,7 @@ void step_forward(motor_t motor) {
 
 /* 
  *  Function: stepBackward
- *  -----------------------------
+ *  ---------------------------------------------------
  *  This method will move a particular motor backwards.
  */
 void step_backward(motor_t motor) {

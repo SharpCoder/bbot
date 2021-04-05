@@ -1,5 +1,13 @@
 #include "shift.h"
 
+/* 
+ *  Function: update_shift_registers
+ *  ---------------------------------------------------
+ *  This method takes an array of values 0 - 7 and
+ *  converts them into a byte which is then
+ *  transmitted to the shift register using the 
+ *  built-in shiftOut operator.
+ */
 void update_shift_registers(int values[8]) {
   digitalWrite(SHIFT_REG_CLCK, HIGH);
   digitalWrite(SHIFT_REG_LATCH, LOW);
