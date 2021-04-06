@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name bbot-component-library)(type Legacy)(uri C:/Users/colem/repos/bbot/bbot-pcb/bbot-component-library.lib)(options "")(descr ""))
+)

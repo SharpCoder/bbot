@@ -391,7 +391,7 @@
   )
 
   (module bbot-pcb:Screw_Terminal_2 (layer F.Cu) (tedit 606C7F68) (tstamp 606C81D8)
-    (at 157.48 101.6)
+    (at 118.11 99.06)
     (path /607194F6)
     (fp_text reference U6 (at -0.13 -0.97) (layer F.SilkS)
       (effects (font (size 1 1) (thickness 0.15)))

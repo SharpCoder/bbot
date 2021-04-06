@@ -271,10 +271,10 @@ F 3 "" H 2200 4200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L bbot-component-library:Screw_Terminal_2 U6
+L bbot-component-library:Screw_Terminal_2 U?
 U 1 1 607194F6
 P 7150 1000
-F 0 "U6" H 7328 1258 50  0000 L CNN
+F 0 "U?" H 7328 1258 50  0000 L CNN
 F 1 "Screw_Terminal_2" H 7328 1167 50  0000 L CNN
 F 2 "bbot-pcb:Screw_Terminal_2" H 7328 1076 50  0000 L CNN
 F 3 "" H 7150 1000 50  0001 C CNN
