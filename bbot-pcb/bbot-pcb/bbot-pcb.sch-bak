@@ -14,10 +14,10 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L bbot-component-library:L293D U9
+L bbot-component-library:L293D MOTOR1_L293D1
 U 1 1 606C2560
 P 5950 2000
-F 0 "U9" V 5879 2478 50  0000 L CNN
+F 0 "MOTOR1_L293D1" V 5879 2478 50  0000 L CNN
 F 1 "L293D" V 5970 2478 50  0000 L CNN
 F 2 "Package_DIP:DIP-16_W7.62mm" H 5950 1250 50  0000 C CNN
 F 3 "" H 5800 1950 50  0001 C CNN
@@ -25,43 +25,10 @@ F 3 "" H 5800 1950 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Regulator_Linear:L7805 U5
-U 1 1 606D0E09
-P 2700 1050
-F 0 "U5" H 2700 1199 50  0000 C CNN
-F 1 "L7805" H 2700 1290 50  0000 C CNN
-F 2 "bbot-pcb:L7805-A" H 1900 750 50  0000 L CIN
-F 3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/41/4f/b3/b0/12/d4/47/88/CD00000444.pdf/files/CD00000444.pdf/jcr:content/translations/en.CD00000444.pdf" H 2700 1000 50  0001 C CNN
-	1    2700 1050
-	-1   0    0    1   
-$EndComp
-$Comp
-L bbot-component-library:ArduinoProMicro U4
-U 1 1 606D85DE
-P 2200 2750
-F 0 "U4" H 2125 3475 50  0000 C CNN
-F 1 "ArduinoProMicro" H 2125 3384 50  0000 C CNN
-F 2 "Package_DIP:DIP-28_W15.24mm" H 2150 3550 50  0000 C CNN
-F 3 "" H 1900 3550 50  0001 C CNN
-	1    2200 2750
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+12V #PWR0101
-U 1 1 606DFC80
-P 7150 1250
-F 0 "#PWR0101" H 7150 1100 50  0001 C CNN
-F 1 "+12V" H 7150 1100 50  0000 C CNN
-F 2 "" H 7150 1250 50  0001 C CNN
-F 3 "" H 7150 1250 50  0001 C CNN
-	1    7150 1250
-	1    0    0    -1  
-$EndComp
-$Comp
-L 74xx:74HC595 U7
+L 74xx:74HC595 SHIFT_REGISTER1
 U 1 1 606C82E5
 P 3550 2750
-F 0 "U7" H 3550 3531 50  0000 C CNN
+F 0 "SHIFT_REGISTER1" H 3550 3531 50  0000 C CNN
 F 1 "74HC595" H 3550 3440 50  0000 C CNN
 F 2 "Package_DIP:DIP-16_W7.62mm" H 3600 3600 50  0000 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 3550 2750 50  0001 C CNN
@@ -134,15 +101,9 @@ Text HLabel 3550 3450 3    50   Input ~ 0
 GND
 Text HLabel 2000 4150 3    50   Input ~ 0
 GND
-Text HLabel 1800 2450 0    50   Input ~ 0
+Text HLabel 2050 850  1    50   Input ~ 0
 GND
-Text HLabel 1800 2550 0    50   Input ~ 0
-GND
-Text HLabel 2700 750  1    50   Input ~ 0
-GND
-Text HLabel 7150 1250 2    50   Input ~ 0
-12V
-Text HLabel 3000 1050 2    50   Input ~ 0
+Text HLabel 2350 1150 2    50   Input ~ 0
 12V
 Text HLabel 6300 2350 2    50   Input ~ 0
 12V
@@ -153,10 +114,8 @@ Text HLabel 6300 4650 2    50   Input ~ 0
 Text HLabel 5600 3900 0    50   Input ~ 0
 12V
 Wire Wire Line
-	2400 1050 2250 1050
-Text HLabel 2250 1050 0    50   Input ~ 0
-5V
-Text HLabel 2450 2550 2    50   Input ~ 0
+	1750 1150 1600 1150
+Text HLabel 1600 1150 0    50   Input ~ 0
 5V
 Text HLabel 3550 2150 0    50   Input ~ 0
 5V
@@ -165,10 +124,6 @@ Text HLabel 2100 4150 3    50   Input ~ 0
 Text HLabel 2200 4150 3    50   Input ~ 0
 SDA
 Text HLabel 2300 4150 3    50   Input ~ 0
-SCL
-Text HLabel 1800 2650 0    50   Input ~ 0
-SDA
-Text HLabel 1800 2750 0    50   Input ~ 0
 SCL
 Text HLabel 6100 1600 1    50   Input ~ 0
 MOTOR1_PHASE_A
@@ -179,10 +134,10 @@ MOTOR1_PHASE_C
 Text HLabel 6100 2350 3    50   Input ~ 0
 MOTOR1_PHASE_D
 $Comp
-L bbot-component-library:L293D U10
+L bbot-component-library:L293D MOTOR2_L293D1
 U 1 1 606C1081
 P 5950 4300
-F 0 "U10" V 5879 4778 50  0000 L CNN
+F 0 "MOTOR2_L293D1" V 5879 4778 50  0000 L CNN
 F 1 "L293D" V 5970 4778 50  0000 L CNN
 F 2 "Package_DIP:DIP-16_W7.62mm" H 5900 3550 50  0000 C CNN
 F 3 "" H 5800 4250 50  0001 C CNN
@@ -213,12 +168,6 @@ Text HLabel 3150 2950 0    50   Input ~ 0
 SHIFT_LATCH
 Text HLabel 3150 2350 0    50   Input ~ 0
 SHIFT_DATA
-Text HLabel 1800 2850 0    50   Input ~ 0
-SHIFT_CLCK
-Text HLabel 1800 2950 0    50   Input ~ 0
-SHIFT_DATA
-Text HLabel 1800 3050 0    50   Input ~ 0
-SHIFT_LATCH
 $Comp
 L bbot-component-library:HA-552-4P U1
 U 1 1 6071100B
@@ -260,10 +209,10 @@ MOTOR2_PHASE_B
 Text HLabel 6950 4550 3    50   Input ~ 0
 MOTOR2_PHASE_A
 $Comp
-L bbot-component-library:HMC5883L U2
+L bbot-component-library:HMC5883L HMC5883L
 U 1 1 606D2B12
 P 2150 4000
-F 0 "U2" H 2378 3951 50  0000 L CNN
+F 0 "HMC5883L" H 2378 3951 50  0000 L CNN
 F 1 "HMC5883L" H 2378 3860 50  0000 L CNN
 F 2 "bbot-pcb:HMC588L" H 2200 4300 50  0000 C CNN
 F 3 "" H 2200 4200 50  0001 C CNN
@@ -271,10 +220,10 @@ F 3 "" H 2200 4200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L bbot-component-library:Screw_Terminal_2 U?
+L bbot-component-library:Screw_Terminal_2 BatteryPack1
 U 1 1 607194F6
 P 7150 1000
-F 0 "U?" H 7328 1258 50  0000 L CNN
+F 0 "BatteryPack1" H 7328 1258 50  0000 L CNN
 F 1 "Screw_Terminal_2" H 7328 1167 50  0000 L CNN
 F 2 "bbot-pcb:Screw_Terminal_2" H 7328 1076 50  0000 L CNN
 F 3 "" H 7150 1000 50  0001 C CNN
@@ -283,8 +232,63 @@ F 3 "" H 7150 1000 50  0001 C CNN
 $EndComp
 Text Notes 7000 600  0    50   ~ 0
 Battery Pack
-Wire Wire Line
-	7150 1250 7150 1000
 Text HLabel 7250 1000 2    50   Input ~ 0
 GND
+$Comp
+L Regulator_Linear:L7805 MOSFET
+U 1 1 606D0E09
+P 2050 1150
+F 0 "MOSFET" H 2050 1299 50  0000 C CNN
+F 1 "L7805" H 2050 1390 50  0000 C CNN
+F 2 "bbot-pcb:L7805-A" H 1250 850 50  0000 L CIN
+F 3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/41/4f/b3/b0/12/d4/47/88/CD00000444.pdf/files/CD00000444.pdf/jcr:content/translations/en.CD00000444.pdf" H 2050 1100 50  0001 C CNN
+	1    2050 1150
+	-1   0    0    1   
+$EndComp
+$Comp
+L bbot-component-library:Screw_Terminal_2 PowerSwitch1
+U 1 1 60720FFC
+P 7650 1650
+F 0 "PowerSwitch1" H 7828 1863 50  0000 L CNN
+F 1 "Screw_Terminal_2" H 7828 1772 50  0000 L CNN
+F 2 "bbot-pcb:Screw_Terminal_2" H 7650 1650 50  0001 C CNN
+F 3 "" H 7650 1650 50  0001 C CNN
+	1    7650 1650
+	1    0    0    -1  
+$EndComp
+Text HLabel 7750 1650 2    50   Input ~ 0
+12V
+Text Notes 7850 1350 0    50   ~ 0
+Power Switch
+Wire Wire Line
+	7150 1000 7150 1650
+Wire Wire Line
+	7150 1650 7650 1650
+$Comp
+L bbot-component-library:MetroMini MetroMini1
+U 1 1 6072CA85
+P 1550 2500
+F 0 "MetroMini1" H 1525 3465 50  0000 C CNN
+F 1 "MetroMini" H 1525 3374 50  0000 C CNN
+F 2 "Package_DIP:DIP-28_W15.24mm" H 1525 3283 50  0000 C CNN
+F 3 "" H 1300 2850 50  0001 C CNN
+	1    1550 2500
+	1    0    0    -1  
+$EndComp
+Text GLabel 1200 2450 0    50   Input ~ 0
+5V
+Text GLabel 1850 2950 2    50   Input ~ 0
+SHIFT_CLCK
+Text GLabel 1850 2850 2    50   Input ~ 0
+SHIFT_DATA
+Text GLabel 1850 2750 2    50   Input ~ 0
+SHIFT_LATCH
+Text GLabel 1200 2250 0    50   Input ~ 0
+GND
+Text GLabel 1200 2350 0    50   Input ~ 0
+GND
+Text GLabel 1200 3050 0    50   Input ~ 0
+SDA
+Text GLabel 1200 3150 0    50   Input ~ 0
+SCL
 $EndSCHEMATC

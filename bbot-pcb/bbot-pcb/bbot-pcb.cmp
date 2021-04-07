@@ -1,0 +1,83 @@
+Cmp-Mod V01 Created by PcbNew   date = 4/6/2021 5:55:21 PM
+
+BeginCmp
+TimeStamp = 606CF7AE
+Path = /60720FFC
+Reference = PowerSwitch1;
+ValeurCmp = Screw_Terminal_2;
+IdModule  = bbot-pcb:Screw_Terminal_2;
+EndCmp
+
+BeginCmp
+TimeStamp = 606CF72B
+Path = /607194F6
+Reference = BatteryPack1;
+ValeurCmp = Screw_Terminal_2;
+IdModule  = bbot-pcb:Screw_Terminal_2;
+EndCmp
+
+BeginCmp
+TimeStamp = 606CF75B
+Path = /6072CA85
+Reference = MetroMini1;
+ValeurCmp = MetroMini;
+IdModule  = Package_DIP:DIP-28_W15.24mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 606CF77F
+Path = /606C2560
+Reference = MOTOR1_L293D1;
+ValeurCmp = L293D;
+IdModule  = Package_DIP:DIP-16_W7.62mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 606CF7A3
+Path = /606C1081
+Reference = MOTOR2_L293D1;
+ValeurCmp = L293D;
+IdModule  = Package_DIP:DIP-16_W7.62mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 606CF7D2
+Path = /606C82E5
+Reference = SHIFT_REGISTER1;
+ValeurCmp = 74HC595;
+IdModule  = Package_DIP:DIP-16_W7.62mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 606CF7DF
+Path = /6071100B
+Reference = U1;
+ValeurCmp = HA-552-4P;
+IdModule  = bbot-pcb:HA-522P-Latch_Terminal;
+EndCmp
+
+BeginCmp
+TimeStamp = 606CF7EB
+Path = /606D2B12
+Reference = HMC5883L1;
+ValeurCmp = HMC5883L;
+IdModule  = bbot-pcb:HMC588L;
+EndCmp
+
+BeginCmp
+TimeStamp = 606CF7F8
+Path = /60714D0C
+Reference = U3;
+ValeurCmp = HA-552-4P;
+IdModule  = bbot-pcb:HA-522P-Latch_Terminal;
+EndCmp
+
+BeginCmp
+TimeStamp = 606CF803
+Path = /606D0E09
+Reference = MOSFET1;
+ValeurCmp = L7805;
+IdModule  = bbot-pcb:L7805-A;
+EndCmp
+
+EndListe
