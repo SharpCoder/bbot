@@ -39,10 +39,6 @@ Wire Wire Line
 	6200 1450 6200 1600
 Wire Wire Line
 	5700 1600 5700 1450
-Wire Wire Line
-	5700 2350 5700 2500
-Wire Wire Line
-	6200 2350 6200 2500
 Text HLabel 5700 2500 0    50   Input ~ 0
 MOTOR1_C
 Text HLabel 6200 1450 2    50   Input ~ 0
@@ -81,21 +77,9 @@ Text HLabel 3950 2950 2    50   Input ~ 0
 MOTOR2_C
 Text HLabel 3950 3050 2    50   Input ~ 0
 MOTOR2_D
-Text HLabel 5900 3900 1    50   Input ~ 0
-GND
-Text HLabel 6000 3900 1    50   Input ~ 0
-GND
 Text HLabel 5900 4650 3    50   Input ~ 0
 GND
-Text HLabel 6000 4650 3    50   Input ~ 0
-GND
-Text HLabel 6000 2350 3    50   Input ~ 0
-GND
-Text HLabel 5900 2350 3    50   Input ~ 0
-GND
 Text HLabel 5900 1600 1    50   Input ~ 0
-GND
-Text HLabel 6000 1600 1    50   Input ~ 0
 GND
 Text HLabel 3550 3450 3    50   Input ~ 0
 GND
@@ -165,7 +149,7 @@ SHIFT_CLCK
 Text HLabel 3150 2650 0    50   Input ~ 0
 5V
 Text HLabel 3150 2950 0    50   Input ~ 0
-SHIFT_LATCH
+GND
 Text HLabel 3150 2350 0    50   Input ~ 0
 SHIFT_DATA
 $Comp
@@ -291,4 +275,10 @@ Text GLabel 1200 3050 0    50   Input ~ 0
 SDA
 Text GLabel 1200 3150 0    50   Input ~ 0
 SCL
+Wire Wire Line
+	5700 2350 5700 2500
+Wire Wire Line
+	6200 2350 6200 2500
+Text HLabel 3150 2850 0    50   Input ~ 0
+SHIFT_LATCH
 $EndSCHEMATC
