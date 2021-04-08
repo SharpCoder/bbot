@@ -19,8 +19,8 @@
 */
 #define MOTOR_1_A  0
 #define MOTOR_1_B  1
-#define MOTOR_1_C  2
-#define MOTOR_1_D  3
+#define MOTOR_1_C  3
+#define MOTOR_1_D  2
 #define MOTOR_2_A  4
 #define MOTOR_2_B  5
 #define MOTOR_2_C  6
