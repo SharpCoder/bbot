@@ -27,8 +27,6 @@ void init_compass(void) {
 Heading read_compass(void) {
   // Signal command to initiate a single read event
   i2c_write_byte(COMPASS_DEVICE_ID, 0x02, 0x01);
-
-  // TODO: delay(6)
   
   // Read the bytes from device
   byte data[6];

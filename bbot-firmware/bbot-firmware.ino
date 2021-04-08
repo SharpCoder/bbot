@@ -18,6 +18,10 @@
 #include "shift.h"
 #include "motors.h"
 #include "compass.h"
+#include "theoretical_delay.h"
+
+TheoreticalDelay jam = TheoreticalDelay();
+Heading heading;
 
 void setup() {  
   pinMode(SHIFT_REG_CLCK, OUTPUT);
@@ -26,14 +30,23 @@ void setup() {
   pinMode(SHIFT_REG_CLEAR, OUTPUT);
   pinMode(A4, INPUT);
   pinMode(A5, OUTPUT);
-  
+
+  Serial.begin(9600);
   Wire.begin();
   init_compass();
 }
 
 void loop() {
-  step_forward(MotorLeft); 
+  jam.defer(handle_motors, 2);
+  jam.defer(handle_update_compass, 67);
+  jam.process();
+}
+
+void handle_update_compass(void) {
+  heading = read_compass();
+}
+
+void handle_motors(void) {
+  step_forward(MotorLeft);
   step_forward(MotorRight);
-  delayMicroseconds(2000);
-  Heading heading = read_compass();
 }
