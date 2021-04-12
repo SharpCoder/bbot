@@ -4,10 +4,11 @@
 // Which phase each motor is currently in
 int motor_phases[] = {0,0};
 
-// Assuming index 0 - 3 is motor 1, 4 - 7 is motor 2. This map represents
-// a particular motor-phase and corresponds it to a pin on the shift register.
-// By using this map lookup, we can change which phase maps to which pin through a
-// global definition instead of making assumptions.
+/* Assuming index 0 - 3 is motor 1, 4 - 7 is motor 2. This map represents
+ * a particular motor-phase and corresponds it to a pin on the shift register.
+ * By using this map lookup, we can change which phase maps to which pin through a
+ * global definition instead of making assumptions.
+ */
 int phase_pin_map[] = { MOTOR_1_A, MOTOR_1_C, MOTOR_1_B, MOTOR_1_D, MOTOR_2_A, MOTOR_2_C, MOTOR_2_B, MOTOR_2_D };
 
 // This represents which shift register pins are currently HIGH.

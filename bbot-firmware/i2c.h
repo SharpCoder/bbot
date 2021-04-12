@@ -4,8 +4,8 @@
  * This module defines convenience methods surrounding
  * i2c communication.
  */
-#ifndef __I2C__H_
-#define __I2C__H_
+#ifndef __I2C_H_
+#define __I2C_H_
 
 #include <Arduino.h>
 #include <Wire.h>

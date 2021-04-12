@@ -11,10 +11,9 @@
 
 #include "pinout.h"
 #include "shift.h"
-#include "theoretical_delay.h"
 
-#define MAX_PHASE 3
 #define MIN_PHASE 0
+#define MAX_PHASE 3
 
 typedef enum { MotorLeft = 1, MotorRight = 2 } motor_t;
 
