@@ -83,8 +83,6 @@ Text HLabel 5900 1600 1    50   Input ~ 0
 GND
 Text HLabel 3550 3450 3    50   Input ~ 0
 GND
-Text HLabel 2000 4150 3    50   Input ~ 0
-GND
 Text HLabel 2050 850  1    50   Input ~ 0
 GND
 Text HLabel 2350 1150 2    50   Input ~ 0
@@ -103,12 +101,6 @@ Text HLabel 1600 1150 0    50   Input ~ 0
 5V
 Text HLabel 3550 2150 0    50   Input ~ 0
 5V
-Text HLabel 2100 4150 3    50   Input ~ 0
-5V
-Text HLabel 2200 4150 3    50   Input ~ 0
-SDA
-Text HLabel 2300 4150 3    50   Input ~ 0
-SCL
 Text HLabel 6100 1600 1    50   Input ~ 0
 MOTOR1_PHASE_A
 Text HLabel 5800 1600 1    50   Input ~ 0
@@ -193,17 +185,6 @@ MOTOR2_PHASE_B
 Text HLabel 6950 4550 3    50   Input ~ 0
 MOTOR2_PHASE_A
 $Comp
-L bbot-component-library:HMC5883L HMC5883L1
-U 1 1 606D2B12
-P 2150 4000
-F 0 "HMC5883L1" H 2378 3951 50  0000 L CNN
-F 1 "HMC5883L" H 2378 3860 50  0000 L CNN
-F 2 "bbot-pcb:HMC588L" H 2200 4300 50  0000 C CNN
-F 3 "" H 2200 4200 50  0001 C CNN
-	1    2150 4000
-	1    0    0    -1  
-$EndComp
-$Comp
 L bbot-component-library:Screw_Terminal_2 BatteryPack1
 U 1 1 607194F6
 P 7150 1000
@@ -281,4 +262,62 @@ Wire Wire Line
 	6200 2350 6200 2500
 Text HLabel 3150 2850 0    50   Input ~ 0
 SHIFT_LATCH
+$Comp
+L bbot-component-library:ADXL335 U2
+U 1 1 607BD863
+P 1500 3950
+F 0 "U2" H 1778 3846 50  0000 L CNN
+F 1 "ADXL335" H 1778 3755 50  0000 L CNN
+F 2 "bbot-pcb:ADXL335" H 1550 4150 50  0000 C CNN
+F 3 "" H 1250 4000 50  0001 C CNN
+	1    1500 3950
+	1    0    0    -1  
+$EndComp
+Text HLabel 1250 3900 0    50   Input ~ 0
+3V
+Text HLabel 1250 4000 0    50   Input ~ 0
+A0
+Text HLabel 1250 4100 0    50   Input ~ 0
+A1
+Text HLabel 1250 4200 0    50   Input ~ 0
+A2
+Text HLabel 1250 4300 0    50   Input ~ 0
+GND
+Text HLabel 1200 2650 0    50   Input ~ 0
+A0
+Text HLabel 1200 2750 0    50   Input ~ 0
+A1
+Text HLabel 1200 2850 0    50   Input ~ 0
+A2
+Text HLabel 1200 2050 0    50   Input ~ 0
+3V
+$Comp
+L bbot-component-library:OPENLOG U4
+U 1 1 607C091B
+P 3550 4050
+F 0 "U4" H 3828 4096 50  0000 L CNN
+F 1 "OPENLOG" H 3828 4005 50  0000 L CNN
+F 2 "bbot-pcb:OPENLOG" H 3828 3914 50  0000 L CNN
+F 3 "" H 3250 4250 50  0001 C CNN
+	1    3550 4050
+	1    0    0    -1  
+$EndComp
+Text HLabel 3250 4050 0    50   Input ~ 0
+3V
+Text HLabel 3250 3950 0    50   Input ~ 0
+GND
+Text HLabel 3250 3850 0    50   Input ~ 0
+GND
+Text HLabel 3250 4150 0    50   Input ~ 0
+TX
+Text HLabel 3250 4250 0    50   Input ~ 0
+RX
+Text HLabel 1850 2150 2    50   Input ~ 0
+TX
+Text HLabel 1850 2250 2    50   Input ~ 0
+RX
+Text HLabel 3250 4350 0    50   Input ~ 0
+RST
+Text HLabel 1200 1950 0    50   Input ~ 0
+RST
 $EndSCHEMATC
