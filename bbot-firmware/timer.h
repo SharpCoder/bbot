@@ -19,7 +19,7 @@ typedef struct {
   long unsigned int duration;
   long unsigned int target_ms;
   bool serviced;
-} timer_t;
+} delay_timer_t;
 
 void init_timer_subsystem(void);
 void process_timers(void);

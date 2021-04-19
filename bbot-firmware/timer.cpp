@@ -1,7 +1,7 @@
 #include "timer.h"
 
 char timer_id = 0;
-timer_t timers[MAX_TIMERS];
+delay_timer_t timers[MAX_TIMERS];
 
 /* 
  *  Function: noop
@@ -39,7 +39,7 @@ void init_timer_subsystem(void) {
  */
 int _get_next_id(void) {
   for (int i = 0; i < MAX_TIMERS; i++) {
-    timer_t timer = timers[i];
+    delay_timer_t timer = timers[i];
     if (timer.serviced == true) {
       return i;
     }
@@ -56,7 +56,7 @@ int _get_next_id(void) {
  */
 void process_timers(void) {
   for (int i = 0; i < MAX_TIMERS; i++) {
-    timer_t timer = timers[i];
+    delay_timer_t timer = timers[i];
     if (timer.serviced == false && millis() > timer.target_ms) {
       func method = timer.method;
       method();
@@ -75,7 +75,7 @@ void process_timers(void) {
  */
 void defer(func fn, long unsigned int ms) {
   for (int i = 0; i < MAX_TIMERS; i++) {
-    timer_t timer = timers[i];
+    delay_timer_t timer = timers[i];
     // Do not allow enqueuing the same method multiple times.
     if (timer.serviced == false && timer.method == fn) {
       return;

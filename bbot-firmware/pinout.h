@@ -1,6 +1,21 @@
 #ifndef __PINOUT_H_
 #define __PINOUT_H_
 
+#include <Arduino.h>
+
+/*
+ * ADXL335 ACCELEROMETER
+ */
+ #define  COMPASS_X_PIN A0
+ #define  COMPASS_Y_PIN A1
+ #define  COMPASS_Z_PIN A2
+
+/*
+ * SPARKFUN OPENLOG
+ */
+ #define  OPENLOG_TX  10
+ #define  OPENLOG_RX  9
+
 /* 
  *  SHIFT REGISTER
  *  These values represent the shift register pins
