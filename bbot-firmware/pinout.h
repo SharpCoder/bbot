@@ -4,6 +4,11 @@
 #include <Arduino.h>
 
 /*
+ * INDICATORS
+ */
+ #define  CRASHMODE_LED_PIN 13
+
+/*
  * ADXL335 ACCELEROMETER
  */
  #define  COMPASS_X_PIN A0

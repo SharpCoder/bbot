@@ -11,7 +11,6 @@
    HMC5883L accelerometer
 */
 #include <Arduino.h>
-#include <Wire.h>
 #include "adxl335.h"
 #include "logger.h"
 #include "motors.h"
@@ -33,9 +32,10 @@ enum AIGravityState {
 VectorData compass_data;
 
 long ms = 0;
+boolean crashed = false;
 void setup() {
-  // Pilot light
-  pinMode(13, OUTPUT);
+  // Crashmode light
+  pinMode(CRASHMODE_LED_PIN, OUTPUT);
 
   // Accelerometer
   pinMode(COMPASS_X_PIN, INPUT);
@@ -49,20 +49,19 @@ void setup() {
   pinMode(SHIFT_REG_CLEAR, OUTPUT);
 
   // Serial used for debugging
-  Serial.begin(9600);
-
-  // Wire used for i2c
-  Wire.begin();
+  Serial.begin(115200);
 
   // Initalize peripherals and subsystems
   logger_init();
   timer_init();
-  
-  // Turn on pilot light
-  digitalWrite(13, HIGH);
 }
 
 void loop() {
+  // Robot will remain idle after a crash
+  if (crashed) {
+    return;
+  }
+  
   // The motors can only actuate once every 2ms
   // so we might as well hold off computation
   // until they are ready to go.
@@ -154,7 +153,8 @@ void ai_main() {
     }
     break;
     case CRASHED: {
-      // Do nothing
+      crashed = true;
+      digitalWrite(CRASHMODE_LED_PIN, HIGH);
     }break;
   }
 }
