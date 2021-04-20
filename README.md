@@ -1,8 +1,8 @@
 # bbot
 
-![incomplete picture of the robot](https://cdn.hackaday.io/images/4916851618244520317.jpg)
-
 bbot - or balancing robot - is a two-wheeled, 3D printed robot which is capable of balancing just like a seguway. The general concept behind the algorithm is: if you are falling forward, move forward. If you are falling backward, move backward. The real challenge comes in doing this quickly and accurately enough.
+
+![incomplete picture of the robot](https://cdn.hackaday.io/images/4916851618244520317.jpg)
 
 ## Components
 
