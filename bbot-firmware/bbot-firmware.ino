@@ -37,6 +37,11 @@ void setup() {
   // Pilot light
   pinMode(13, OUTPUT);
 
+  // Accelerometer
+  pinMode(COMPASS_X_PIN, INPUT);
+  pinMode(COMPASS_Y_PIN, INPUT);
+  pinMode(COMPASS_Z_PIN, INPUT);
+
   // Shift register pins
   pinMode(SHIFT_REG_CLCK, OUTPUT);
   pinMode(SHIFT_REG_DATA, OUTPUT);
