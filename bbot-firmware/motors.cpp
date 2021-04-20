@@ -15,7 +15,7 @@ int phase_pin_map[] = { MOTOR_1_A, MOTOR_1_C, MOTOR_1_B, MOTOR_1_D, MOTOR_2_A, M
 int shift_register_values[8] =  {0,0,0,0,0,0,0,0};
 
 /* 
- *  Function: computeOffset
+ *  Function: _compute_offest
  *  ---------------------------------------------------
  *  This method computes the offset of a particular
  *  motor. The first motor has no offset, the second
@@ -23,7 +23,7 @@ int shift_register_values[8] =  {0,0,0,0,0,0,0,0};
  *  the shift register has 8 channels and each motor
  *  uses a different set of them.
  */
-int _computeOffset(motor_t motor) {
+int _compute_offest(motor_t motor) {
   if (motor == MotorRight) {
     return 4;
   } else {
@@ -32,14 +32,14 @@ int _computeOffset(motor_t motor) {
 }
 
 /* 
- *  Function: setPhase
+ *  Function: _set_phase
  *  ---------------------------------------------------
  *  This method will take a motor and a phase
  *  and update the shift register data object
  *  while applying the result into the shift register.
  */
-void _setPhase(motor_t motor, int phase) {
-  int offset = _computeOffset(motor);
+void _set_phase(motor_t motor, int phase) {
+  int offset = _compute_offest(motor);
   for (int phase_idx = 0; phase_idx < 4; phase_idx++) {
     // For a given index, lookup the pin mapping
     int phase_pin = phase_pin_map[offset + phase_idx];
@@ -63,7 +63,7 @@ void _setPhase(motor_t motor, int phase) {
  *  movement in the particular direction.
  */
 void _step(motor_t motor, bool forward) {
-  int index = _computeOffset(motor) / 4;
+  int index = _compute_offest(motor) / 4;
 
   // Compute the next phase
   if (forward) {
@@ -80,7 +80,7 @@ void _step(motor_t motor, bool forward) {
   }
 
   // Apply
-  _setPhase(motor, motor_phases[index]);
+  _set_phase(motor, motor_phases[index]);
 }
 
 /* 

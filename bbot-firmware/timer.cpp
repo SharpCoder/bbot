@@ -11,7 +11,7 @@ delay_timer_t timers[MAX_TIMERS];
 void noop() { }
 
 /* 
- *  Function: init_timer_subsystem
+ *  Function: timer_init
  *  ---------------------------------------------------
  *  This method initializes the timer subsystem by
  *  populating the timers array with blank, serviced
@@ -19,7 +19,7 @@ void noop() { }
  *  method to work even if nothing has been actually
  *  entered into the system.
  */
-void init_timer_subsystem(void) {
+void timer_init(void) {
   for (int i = 0; i < MAX_TIMERS; i++) {
     timers[i] = {
       noop,

@@ -19,6 +19,10 @@
 #include "shift.h"
 #include "timer.h"
 
+#define GRAVITY_NEUTRAL 213.0
+#define GRAVITY_THRESHOLD 5.0
+#define GRAVITY_CRASHED 150.0
+
 enum AIGravityState { 
   FALLING_FORWARD,
   FALLING_BACKWARD,
@@ -47,7 +51,7 @@ void setup() {
 
   // Initalize peripherals and subsystems
   logger_init();
-  init_timer_subsystem();
+  timer_init();
   
   // Turn on pilot light
   digitalWrite(13, HIGH);
@@ -94,7 +98,24 @@ void update_compass(void) {
     I.E. are we falling, if so, which direction.
 */
 AIGravityState ai_compute_gravity_state(VectorData data) {
-  return FALLING_FORWARD;
+
+  float rotation = data.z;
+  float dist_to_neutral = abs(GRAVITY_NEUTRAL - rotation);
+
+  if (rotation < GRAVITY_CRASHED) {
+    // We are in a very bad state
+    return CRASHED;
+  } else if (dist_to_neutral > GRAVITY_THRESHOLD) {
+    // We are falling
+    if (rotation > GRAVITY_NEUTRAL) {
+      return FALLING_FORWARD;
+    } else {
+      return FALLING_BACKWARD;
+    }
+  } else {
+    // We are in a neutral state
+    return STABLE;
+  }
 }
 
 /*
@@ -110,7 +131,6 @@ AIGravityState ai_compute_gravity_state(VectorData data) {
     moving.
 */
 void ai_main() {
-
   AIGravityState gravity_state = ai_compute_gravity_state(compass_data);
 
   switch (gravity_state) {

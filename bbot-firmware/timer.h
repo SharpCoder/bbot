@@ -1,13 +1,13 @@
 /*
- * theoretical_delay.h
+ * timer.h
  * ------------------------------
  * This module is responsible for managing a non-blocking delay
  * mechanism which critical code-paths can use to effectively block
  * without interrupting other peripherals.
  */
 
-#ifndef _TIMER_H_
-#define _TIMER_H_
+#ifndef __TIMER_H_
+#define __TIMER_H_
 
 #include <Arduino.h>
 
@@ -21,7 +21,7 @@ typedef struct {
   bool serviced;
 } delay_timer_t;
 
-void init_timer_subsystem(void);
+void timer_init(void);
 void process_timers(void);
 void defer(func fn, long unsigned int ms);
 
