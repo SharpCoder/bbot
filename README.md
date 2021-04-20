@@ -11,29 +11,25 @@ The main components for bbot are as follows:
  - ADXL335 (Accelerometer)
  - SparkFun OpenLog (Telemetry to SDCard)
  - 595N (Shift Register)
- - 2x L239D (H-Bridge)
+ - 2x L293D (H-Bridge)
  - 2x Stepper Motors
 
 ## Project Files
 
 The project is split out into different folders. Each folder is responsible for a different aspect of the robot design.
 
-**bbot-firmware**
-_The arduino source code_
+ - **bbot-firmware**: _The arduino source code_
+ - **bbot-jupyter**: _A jupyter notebook used to analyze sensor readings_
+ - **bbot-models**: _SolidWorks models, as well as finalized STL files_
+ - **bbot-pcb**: _KiCAD circuit board and gerber files_
 
-**bbot-jupyter**
-_A jupyter notebook used to analyze sensor readings_
+## Firmware
 
-**bbot-models**
-_SolidWorks models, as well as finalized STL files_
-
-**bbot-pcb**
-_KiCAD circuit board and gerber files_
-
-
+The firmware is exclusively written for Arduino in C++. 
 
 ## Jupyter Notebook
-TBD
+
+
 
 
 ## 3D Models
