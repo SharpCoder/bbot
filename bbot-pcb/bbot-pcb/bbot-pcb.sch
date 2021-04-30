@@ -81,23 +81,19 @@ Text HLabel 5900 4650 3    50   Input ~ 0
 GND
 Text HLabel 5900 1600 1    50   Input ~ 0
 GND
-Text HLabel 3550 3450 3    50   Input ~ 0
-GND
 Text HLabel 2050 850  1    50   Input ~ 0
 GND
-Text HLabel 2350 1150 2    50   Input ~ 0
+Text HLabel 2650 1150 2    50   Input ~ 0
 12V
 Text HLabel 6300 2350 2    50   Input ~ 0
-12V
+5V
 Text HLabel 5600 1600 0    50   Input ~ 0
 12V
 Text HLabel 6300 4650 2    50   Input ~ 0
-12V
+5V
 Text HLabel 5600 3900 0    50   Input ~ 0
 12V
-Wire Wire Line
-	1750 1150 1600 1150
-Text HLabel 1600 1150 0    50   Input ~ 0
+Text HLabel 1450 1150 0    50   Input ~ 0
 5V
 Text HLabel 3550 2150 0    50   Input ~ 0
 5V
@@ -139,7 +135,7 @@ MOTOR2_PHASE_D
 Text HLabel 3150 2550 0    50   Input ~ 0
 SHIFT_CLCK
 Text HLabel 3150 2650 0    50   Input ~ 0
-5V
+SHIFT_CLR
 Text HLabel 3150 2950 0    50   Input ~ 0
 GND
 Text HLabel 3150 2350 0    50   Input ~ 0
@@ -229,33 +225,6 @@ Wire Wire Line
 	7150 1000 7150 1650
 Wire Wire Line
 	7150 1650 7650 1650
-$Comp
-L bbot-component-library:MetroMini MetroMini1
-U 1 1 6072CA85
-P 1550 2500
-F 0 "MetroMini1" H 1525 3465 50  0000 C CNN
-F 1 "MetroMini" H 1525 3374 50  0000 C CNN
-F 2 "Package_DIP:DIP-28_W15.24mm" H 1525 3283 50  0000 C CNN
-F 3 "" H 1300 2850 50  0001 C CNN
-	1    1550 2500
-	1    0    0    -1  
-$EndComp
-Text GLabel 1200 2450 0    50   Input ~ 0
-5V
-Text GLabel 1850 2950 2    50   Input ~ 0
-SHIFT_CLCK
-Text GLabel 1850 2850 2    50   Input ~ 0
-SHIFT_DATA
-Text GLabel 1850 2750 2    50   Input ~ 0
-SHIFT_LATCH
-Text GLabel 1200 2250 0    50   Input ~ 0
-GND
-Text GLabel 1200 2350 0    50   Input ~ 0
-GND
-Text GLabel 1200 3050 0    50   Input ~ 0
-SDA
-Text GLabel 1200 3150 0    50   Input ~ 0
-SCL
 Wire Wire Line
 	5700 2350 5700 2500
 Wire Wire Line
@@ -265,59 +234,123 @@ SHIFT_LATCH
 $Comp
 L bbot-component-library:ADXL335 U2
 U 1 1 607BD863
-P 1500 3950
-F 0 "U2" H 1778 3846 50  0000 L CNN
-F 1 "ADXL335" H 1778 3755 50  0000 L CNN
-F 2 "bbot-pcb:ADXL335" H 1550 4150 50  0000 C CNN
-F 3 "" H 1250 4000 50  0001 C CNN
-	1    1500 3950
+P 1450 5600
+F 0 "U2" H 1728 5496 50  0000 L CNN
+F 1 "ADXL335" H 1728 5405 50  0000 L CNN
+F 2 "bbot-pcb:ADXL335" H 1500 5800 50  0000 C CNN
+F 3 "" H 1200 5650 50  0001 C CNN
+	1    1450 5600
 	1    0    0    -1  
 $EndComp
-Text HLabel 1250 3900 0    50   Input ~ 0
+Text HLabel 1200 5550 0    50   Input ~ 0
 3V
-Text HLabel 1250 4000 0    50   Input ~ 0
+Text HLabel 1200 5650 0    50   Input ~ 0
 A0
-Text HLabel 1250 4100 0    50   Input ~ 0
+Text HLabel 900  5750 0    50   Input ~ 0
 A1
-Text HLabel 1250 4200 0    50   Input ~ 0
+Text HLabel 1200 5850 0    50   Input ~ 0
 A2
-Text HLabel 1250 4300 0    50   Input ~ 0
+Text HLabel 1200 5950 0    50   Input ~ 0
 GND
-Text HLabel 1200 2650 0    50   Input ~ 0
-A0
-Text HLabel 1200 2750 0    50   Input ~ 0
-A1
-Text HLabel 1200 2850 0    50   Input ~ 0
-A2
-Text HLabel 1200 2050 0    50   Input ~ 0
-3V
+Text HLabel 3550 3450 3    50   Input ~ 0
+GND
 $Comp
-L bbot-component-library:OPENLOG U4
-U 1 1 607C091B
-P 3550 4050
-F 0 "U4" H 3828 4096 50  0000 L CNN
-F 1 "OPENLOG" H 3828 4005 50  0000 L CNN
-F 2 "bbot-pcb:OPENLOG" H 3828 3914 50  0000 L CNN
-F 3 "" H 3250 4250 50  0001 C CNN
-	1    3550 4050
+L bbot-component-library:ArduinoProMicro U4
+U 1 1 608BA4F8
+P 1550 2450
+F 0 "U4" H 1475 3175 50  0000 C CNN
+F 1 "ArduinoProMicro" H 1475 3084 50  0000 C CNN
+F 2 "promicro:ProMicro" H 1250 3250 50  0001 C CNN
+F 3 "" H 1250 3250 50  0001 C CNN
+	1    1550 2450
 	1    0    0    -1  
 $EndComp
-Text HLabel 3250 4050 0    50   Input ~ 0
+$Comp
+L Sparkfun:SPARKFUN-RESISTORS_4.7KOHM-0603-1_10W-1% R1
+U 1 1 608BCB4A
+P 1200 4000
+F 0 "R1" V 1137 4068 45  0000 L CNN
+F 1 "SPARKFUN-RESISTORS_4.7KOHM-0603-1_10W-1%" V 1221 4068 45  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P2.54mm_Vertical" V 1284 4068 20  0000 L CNN
+F 3 "" H 1200 4000 60  0001 C CNN
+	1    1200 4000
+	0    1    1    0   
+$EndComp
+$Comp
+L Sparkfun:SPARKFUN-RESISTORS_4.7KOHM-0603-1_10W-1% R2
+U 1 1 608BDF88
+P 1200 4650
+F 0 "R2" V 1137 4718 45  0000 L CNN
+F 1 "SPARKFUN-RESISTORS_4.7KOHM-0603-1_10W-1%" V 1221 4718 45  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P2.54mm_Vertical" V 1284 4718 20  0000 L CNN
+F 3 "" H 1200 4650 60  0001 C CNN
+	1    1200 4650
+	0    1    1    0   
+$EndComp
+Text HLabel 1200 4850 3    50   Input ~ 0
+GND
+Text HLabel 1200 3800 1    50   Input ~ 0
+5V
+Wire Wire Line
+	1200 4200 1200 4300
+Wire Wire Line
+	1200 4300 1600 4300
+Connection ~ 1200 4300
+Wire Wire Line
+	1200 4300 1200 4450
+Text HLabel 1600 4300 2    50   Input ~ 0
 3V
-Text HLabel 3250 3950 0    50   Input ~ 0
+Text HLabel 1800 1950 2    50   Input ~ 0
+5V
+Text HLabel 1150 2150 0    50   Input ~ 0
 GND
-Text HLabel 3250 3850 0    50   Input ~ 0
-GND
-Text HLabel 3250 4150 0    50   Input ~ 0
-TX
-Text HLabel 3250 4250 0    50   Input ~ 0
-RX
-Text HLabel 1850 2150 2    50   Input ~ 0
-TX
-Text HLabel 1850 2250 2    50   Input ~ 0
-RX
-Text HLabel 3250 4350 0    50   Input ~ 0
-RST
-Text HLabel 1200 1950 0    50   Input ~ 0
-RST
+Text HLabel 1800 2650 2    50   Input ~ 0
+A0
+Text HLabel 1800 2550 2    50   Input ~ 0
+A1
+Text HLabel 1800 2450 2    50   Input ~ 0
+A2
+Text Notes 1200 3550 0    50   ~ 0
+Step-down converter
+Text HLabel 1150 2550 0    50   Input ~ 0
+SHIFT_LATCH
+Text HLabel 1150 2650 0    50   Input ~ 0
+SHIFT_DATA
+Text HLabel 1150 2750 0    50   Input ~ 0
+SHIFT_CLCK
+Text HLabel 1150 2850 0    50   Input ~ 0
+SHIFT_CLR
+$Comp
+L Device:C C2
+U 1 1 608C7BCB
+P 1050 5750
+F 0 "C2" V 798 5750 50  0000 C CNN
+F 1 "C.0047mf" V 889 5750 50  0000 C CNN
+F 2 "Capacitor_THT:C_Disc_D3.4mm_W2.1mm_P2.50mm" H 1088 5600 50  0001 C CNN
+F 3 "~" H 1050 5750 50  0001 C CNN
+	1    1050 5750
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C4
+U 1 1 608C879A
+P 1600 1150
+F 0 "C4" V 1348 1150 50  0000 C CNN
+F 1 "L7805_OUT_CAP" V 1439 1150 50  0000 C CNN
+F 2 "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm" H 1638 1000 50  0001 C CNN
+F 3 "~" H 1600 1150 50  0001 C CNN
+	1    1600 1150
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C5
+U 1 1 608C9E4F
+P 2500 1150
+F 0 "C5" V 2248 1150 50  0000 C CNN
+F 1 "L7805_IN_CAP" V 2339 1150 50  0000 C CNN
+F 2 "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm" H 2538 1000 50  0001 C CNN
+F 3 "~" H 2500 1150 50  0001 C CNN
+	1    2500 1150
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
