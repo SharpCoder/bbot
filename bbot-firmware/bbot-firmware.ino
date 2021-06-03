@@ -12,15 +12,15 @@
 */
 #include <Arduino.h>
 #include "adxl335.h"
-#include "logger.h"
 #include "motors.h"
 #include "pinout.h"
 #include "shift.h"
 #include "timer.h"
 
-#define GRAVITY_NEUTRAL 213.0
-#define GRAVITY_THRESHOLD 5.0
-#define GRAVITY_CRASHED 150.0
+#define GRAVITY_NEUTRAL 316.0
+#define GRAVITY_THRESHOLD 3.0
+#define GRAVITY_CRASHED 60.0
+#define GRAVITY_AVG_COUNT 3.0
 
 enum AIGravityState { 
   FALLING_FORWARD,
@@ -30,12 +30,14 @@ enum AIGravityState {
 };
 
 VectorData compass_data;
+float avg_rotation_base = 0.0;
+float avg_rotation_count = 0.0;
 
-long ms = 0;
 boolean crashed = false;
 void setup() {
-  // Crashmode light
-  pinMode(CRASHMODE_LED_PIN, OUTPUT);
+  // Indicator light representing total system shutdown
+//  pinMode(LED_BUILTIN, OUTPUT);
+//  digitalWrite(LED_BUILTIN, LOW);
 
   // Accelerometer
   pinMode(COMPASS_X_PIN, INPUT);
@@ -51,47 +53,75 @@ void setup() {
   // Serial used for debugging
   Serial.begin(115200);
 
-  // Initalize peripherals and subsystems
-  logger_init();
+  // Spend 2 seconds calculating the average accelerometer reading.
+  // This does two things.
+  // First - It is a built-in wait timer for the application start.
+  // Second - It allows us to calculate a rolling average from here on out.
+  for (int i = GRAVITY_AVG_COUNT; i > 0; i--) {
+    // Update the compass readings
+    update_compass();
+    delay(2000 / GRAVITY_AVG_COUNT);
+  }
+
+//  // Initalize peripherals and subsystems
   timer_init();
 }
 
 void loop() {
   // Robot will remain idle after a crash
   if (crashed) {
+    Serial.println("CRASHED");
     return;
   }
-  
-  // The motors can only actuate once every 2ms
-  // so we might as well hold off computation
-  // until they are ready to go.
-  defer(ai_main, 2);
-
-  // The accelerometer requires a 67ms delay
-  // between readings.
-  defer(update_compass, 30);
+//  digitalWrite(LED_BUILTIN, HIGH);
+//  delay(1000);
+//  digitalWrite(LED_BUILTIN, LOW);
+//  delay(1000);
+  defer(ai_main, 20);
+  defer(update_compass, 3);
 
   // This will handle orchestrating all currently
   // open threads which need processing.
   process_timers();
+//  step_backward(MotorRight);
+//  step_forward(MotorLeft);
+
+//  update_compass();
+//  Serial.println(get_rotation(compass_data));
+
+//  delay(14);
 }
 
 /*
     Function: update_compass
     ---------------------------------------------------
     This method simply calls the compass_read function
-    every 67ms which is the minimum amount of time
-    you should wait for the 15Hz configuration.
+    and saves the current data in a global variable.
 */
 void update_compass(void) {
   compass_data = compass_read();
-  
-  // Stream telemetry to the SDCard
-  logger_log(
-    compass_data.x,
-    compass_data.y,
-    compass_data.z
-  );
+
+  // While we're at it, update the
+  // rolling average rotation value.
+  float rotation = get_rotation(compass_data);
+  if (avg_rotation_count < GRAVITY_AVG_COUNT) {
+    avg_rotation_base += rotation;
+    avg_rotation_count++;
+  } else {
+    avg_rotation_base = avg_rotation_base - (avg_rotation_base / GRAVITY_AVG_COUNT) + rotation;
+  }
+}
+
+/*
+    Function: get_rotation
+    ---------------------------------------------------
+    A convenience method which returns the axis
+    representing rotation based on the sensor
+    orientation. Since it's mounted in a specific
+    and non-standard axis.
+*/
+float get_rotation(VectorData data) {
+  return data.y;
 }
 
 /*
@@ -102,16 +132,22 @@ void update_compass(void) {
     I.E. are we falling, if so, which direction.
 */
 AIGravityState ai_compute_gravity_state(VectorData data) {
-
-  float rotation = data.z;
+  float rotation = get_rotation(data);
+  float avg_rotation = avg_rotation_base / avg_rotation_count;
   float dist_to_neutral = abs(GRAVITY_NEUTRAL - rotation);
-
-  if (rotation < GRAVITY_CRASHED) {
+  float avg_dist_to_neutral = abs(GRAVITY_NEUTRAL - avg_rotation);
+  
+//  Serial.print("rotation: ");
+//  Serial.println(avg_rotation);
+//  Serial.print("dist_to_neutral: ");
+//  Serial.println(avg_dist_to_neutral);
+  
+  if (avg_dist_to_neutral > GRAVITY_CRASHED) {
     // We are in a very bad state
     return CRASHED;
-  } else if (dist_to_neutral > GRAVITY_THRESHOLD) {
+  } else if (avg_dist_to_neutral > GRAVITY_THRESHOLD) {
     // We are falling
-    if (rotation > GRAVITY_NEUTRAL) {
+    if (avg_rotation > GRAVITY_NEUTRAL) {
       return FALLING_FORWARD;
     } else {
       return FALLING_BACKWARD;
@@ -154,7 +190,7 @@ void ai_main() {
     break;
     case CRASHED: {
       crashed = true;
-      digitalWrite(CRASHMODE_LED_PIN, HIGH);
-    }break;
+    }
+    break;
   }
 }
