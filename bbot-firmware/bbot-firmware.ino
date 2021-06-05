@@ -17,10 +17,11 @@
 #include "shift.h"
 #include "timer.h"
 
-#define GRAVITY_NEUTRAL 316.0
+#define MOTOR_LOOP_DELAY 9
+#define GRAVITY_NEUTRAL 308.0
 #define GRAVITY_THRESHOLD 3.0
-#define GRAVITY_CRASHED 60.0
-#define GRAVITY_AVG_COUNT 3.0
+#define GRAVITY_CRASHED 65.0
+#define GRAVITY_AVG_COUNT 9.0
 
 enum AIGravityState { 
   FALLING_FORWARD,
@@ -30,8 +31,12 @@ enum AIGravityState {
 };
 
 VectorData compass_data;
+AIGravityState real_gravity_state = STABLE;
+AIGravityState active_gravity_state = STABLE;
+
 float avg_rotation_base = 0.0;
 float avg_rotation_count = 0.0;
+long motor_loop_target_ms = 0;
 
 boolean crashed = false;
 void setup() {
@@ -70,26 +75,16 @@ void setup() {
 void loop() {
   // Robot will remain idle after a crash
   if (crashed) {
-    Serial.println("CRASHED");
     return;
   }
-//  digitalWrite(LED_BUILTIN, HIGH);
-//  delay(1000);
-//  digitalWrite(LED_BUILTIN, LOW);
-//  delay(1000);
-  defer(ai_main, 20);
-  defer(update_compass, 3);
+  
+  defer(ai_main, 28);
+  defer(update_compass, 4);
 
   // This will handle orchestrating all currently
   // open threads which need processing.
   process_timers();
-//  step_backward(MotorRight);
-//  step_forward(MotorLeft);
-
-//  update_compass();
-//  Serial.println(get_rotation(compass_data));
-
-//  delay(14);
+  process_motor_loop();
 }
 
 /*
@@ -137,8 +132,21 @@ AIGravityState ai_compute_gravity_state(VectorData data) {
   float dist_to_neutral = abs(GRAVITY_NEUTRAL - rotation);
   float avg_dist_to_neutral = abs(GRAVITY_NEUTRAL - avg_rotation);
   
-//  Serial.print("rotation: ");
-//  Serial.println(avg_rotation);
+//  Serial.print("<");
+//  Serial.print("[");
+//  Serial.print(millis());
+//  Serial.print(",");
+//  Serial.print(avg_rotation);
+//  Serial.print(",");
+//  Serial.print(rotation);
+//  Serial.print(",");
+//  Serial.print(data.x);
+//  Serial.print(",");
+//  Serial.print(data.y);
+//  Serial.print(",");
+//  Serial.print(data.z);
+//  Serial.println("],");
+//  
 //  Serial.print("dist_to_neutral: ");
 //  Serial.println(avg_dist_to_neutral);
   
@@ -171,26 +179,37 @@ AIGravityState ai_compute_gravity_state(VectorData data) {
     moving.
 */
 void ai_main() {
-  AIGravityState gravity_state = ai_compute_gravity_state(compass_data);
+  real_gravity_state = ai_compute_gravity_state(compass_data);
+}
 
-  switch (gravity_state) {
-    case FALLING_FORWARD: {
-      step_forward(MotorLeft);
-      step_forward(MotorRight);
+void process_motor_loop() {
+  long now = millis();
+  if (real_gravity_state != active_gravity_state || now > motor_loop_target_ms) {
+    switch (active_gravity_state) {
+      case FALLING_FORWARD: {
+        step_forward(MotorLeft);
+        step_forward(MotorRight);
+      }
+      break;
+      case FALLING_BACKWARD: {
+        step_backward(MotorLeft);
+        step_backward(MotorRight);
+      }
+      break;
+      case STABLE: {
+        // Do nothing
+      }
+      break;
+      case CRASHED: {
+        if (crashed != true) {
+          Serial.println("CRASHED");
+        }
+        crashed = true;
+      }
+      break;
     }
-    break;
-    case FALLING_BACKWARD: {
-      step_backward(MotorLeft);
-      step_backward(MotorRight);
-    }
-    break;
-    case STABLE: {
-      // Do nothing
-    }
-    break;
-    case CRASHED: {
-      crashed = true;
-    }
-    break;
+
+    motor_loop_target_ms = millis() + MOTOR_LOOP_DELAY;
+    active_gravity_state = real_gravity_state;
   }
 }
